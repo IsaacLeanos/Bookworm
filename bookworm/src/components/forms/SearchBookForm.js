@@ -11,8 +11,9 @@ class SearchBookForm extends React.Component{
     }
 
     onChange=(e,data)=>{
-        this.setState({query:data.value})            
+        this.setState({query:data.text})            // data.value
         this.props.onBookSelect(this.state.books[data.value])
+
     }
 
     onSearchChange=(e,data)=>{
@@ -25,16 +26,16 @@ class SearchBookForm extends React.Component{
         if(!this.state.query)return;
         this.setState({loading:true})
         axios.get(`/api/books/search?q=${this.state.query}`)
-        .then(res=>res.data.books)
+        .then((res)=>{return res.data.books})
         .then((books)=>{
-            const options=[]                // [{key:id,value:id,title:title},]
+            const options=[]                
             const booksHash={}                 // {id:{id,title,author}}
             books.forEach((book)=>{
-                booksHash[book.goodreadsId]=book             
-                options.push({
-                    key:book.goodreadsId,
+               booksHash[book.goodreadsId]=book
+               options.push({
+                    key:book.goodreadsId,                                  // [{key:id,value:id,text:title},]
                     value:book.goodreadsId,
-                    title:book.title
+                    text:book.title
                 })
             })
             this.setState({loading:false,options:options,books:booksHash})

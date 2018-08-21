@@ -22,7 +22,7 @@ class NewBookPage extends React.Component{
             <h1>Add a new book to your collection</h1>
             <SearchBookForm onBookSelect={this.onBookSelect}/>
 
-            {this.state.book&&<BookForm submit={this.addBook} book={this.state.book}/>}
+            {this.state.book&&<BookForm onSubmit={this.addBook} book={this.state.book}/>}
             </Segment>
         )
     }
