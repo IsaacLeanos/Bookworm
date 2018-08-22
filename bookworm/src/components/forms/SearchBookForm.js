@@ -29,7 +29,7 @@ class SearchBookForm extends React.Component{
         .then((res)=>{return res.data.books})
         .then((books)=>{
             const options=[]                
-            const booksHash={}                 // {id:{id,title,author}}
+            const booksHash={}                 // {id:{id,title,authors,pages,covers}}
             books.forEach((book)=>{
                booksHash[book.goodreadsId]=book
                options.push({

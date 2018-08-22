@@ -5,7 +5,7 @@ import BookForm from '../forms/BookForm'
 
 class NewBookPage extends React.Component{
     state={
-        book:null
+        book:null               //{goodreadsId:{title,authors,covers,pages}}
     }
 
     onBookSelect=(book)=>{
