@@ -1,5 +1,6 @@
 // import api from '../api'
 import axios from 'axios'
+import setAuthorizationHeader from '../utils/setAuthorizationHeader'
 
 export const userLoggedIn=(user)=>{
     return{
@@ -11,6 +12,7 @@ export const attemptLogin=(data)=>{
     return(dispatch)=>{
     return apiLogin(data).then((user)=>{
         localStorage.bookwormJWT=user.token
+        setAuthorizationHeader(user.token)
         dispatch(userLoggedIn(user))
         })
     }
@@ -24,6 +26,7 @@ export const userLoggedOut=()=>{
 export const attemptLogout=()=>{
     return(dispatch)=>{
         localStorage.removeItem('bookwormJWT')
+        setAuthorizationHeader()
         dispatch(userLoggedOut())
     }
 }

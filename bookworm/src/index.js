@@ -10,6 +10,7 @@ import{composeWithDevTools}from'redux-devtools-extension'
 import{BrowserRouter,Route}from'react-router-dom'
 import{userLoggedIn}from'./actions/auth'
 import registerServiceWorker from './registerServiceWorker';
+import setAuthorizationHeader from './utils/setAuthorizationHeader'
 import 'semantic-ui-css/semantic.min.css';
 
 const store=createStore(
@@ -24,6 +25,7 @@ if(localStorage.bookwormJWT){
         email:payLoad.email,
         confirmed:payLoad.confirmed
     }
+    setAuthorizationHeader(localStorage.bookwormJWT)               //header after a request past the login request (INSPECT)
     store.dispatch(userLoggedIn(user))
 }
 

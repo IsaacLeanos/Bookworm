@@ -1,9 +1,9 @@
 import express from 'express'
-// import User from '../models/User'
-// import nodemailer from 'nodemailer'
-// import jwt from 'jsonwebtoken'
+import authenticate from '../middleware/authenticate'
 
 const router=express.Router()
+
+router.use(authenticate)
 
 router.get('/search',(req,res)=>{
     res.json({
